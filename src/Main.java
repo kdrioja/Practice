@@ -1,11 +1,107 @@
 public class Main {
     public static void main(String[] args) {
+        /*
         System.out.println(solution("2-4A0r7-4K", 4));
         System.out.println(solution("2-4A0r7-4K", 3));
         System.out.println(solution("2-4A0r7-4K", 2));
+        */
+
+        /*
+        String s1 = "abcdefghijklmnopqrstuvwxyz";
+        String s2 = "cba";
+        //System.out.println(s1.length());
+        System.out.println(solution1(s1, s2));
+        System.out.println(solution1(s1, ""));
+        System.out.println(solution1(s1, "abcdefghijklmnopqrstuvwxyz"));
+        System.out.println(solution1(s1, "za"));
+        System.out.println(solution1(s1, "az"));
+        System.out.println(solution1(s1, "ab"));
+        */
+
+        int[] A = {-1,7,0,7,-8};
+        System.out.println(solution(A));
+
+        int[] B = {9};
+        System.out.println(solution(B));
+
+        int[] C = {5, 9, -8, 3, 9};
+        System.out.println(solution(C));
+
+        int[] D = {3, 4, -2};
+        System.out.println(solution(D));
     }
 
-    /**
+    public static int solution(int[] A) {
+        // write your code in Java SE 8
+        //N is within range [1, 1000] so A is never empty
+        //It always at least has the root
+
+        int levelWithMaxSum = 1;
+        int maxSum = A[0];
+        int levelCounter = 1;
+
+        int currentLevelIndex = 0;
+        int nextLevelIndex = (2 * currentLevelIndex) + 1;
+
+        while (nextLevelIndex < A.length) {
+            levelCounter++;
+            currentLevelIndex = nextLevelIndex;
+
+            int currentLevelSum = 0;
+            int endOfRange = ((2 * currentLevelIndex) < A.length) ? (2 * currentLevelIndex) : (A.length - 1);
+
+            for (int nodeIndex = currentLevelIndex; nodeIndex <= endOfRange; nodeIndex++) {
+                currentLevelSum += A[nodeIndex];
+            }
+
+            if (currentLevelSum > maxSum) {
+                maxSum = currentLevelSum;
+                levelWithMaxSum = levelCounter;
+            }
+
+            nextLevelIndex = (2 * currentLevelIndex) + 1;
+        }
+
+        return levelWithMaxSum;
+    }
+
+
+
+
+    public static int solution1(String S1, String S2) {
+        // write your code in Java SE 8
+        int totalTime = 0;
+        int i = 0;
+        int j;// = S1.indexOf(S2.charAt(0));
+
+        for (int n = 0; n < S2.length(); n++) {
+            j = S1.indexOf(S2.charAt(n));
+            totalTime += Math.abs(j-i);
+            i = j;
+        }
+        return totalTime;
+    }
+
+    public static int timeFinder(int i, int j) {
+        return Math.abs(j-i);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
      We are given a string S consisting of N characters and an integer K.
      The string represents a software license key which we would like to format.
      The string is composed of alphanumerical characters and/or dashes. The dashes
