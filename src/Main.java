@@ -68,7 +68,7 @@ public class Main {
 
 
 
-    public static int solution1(String S1, String S2) {
+    public static int solution2(String S1, String S2) {
         // write your code in Java SE 8
         int totalTime = 0;
         int i = 0;
@@ -138,7 +138,7 @@ public class Main {
      string S contains at least one alphanumerical character.
      */
 
-    public static String solution(String S, int K) {
+    public static String solution1(String S, int K) {
         String input = S.toUpperCase();
         StringBuilder result = new StringBuilder();
         int pointer = input.length() - 1;
