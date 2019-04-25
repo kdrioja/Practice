@@ -34,6 +34,64 @@ public class Main {
         int[] arr = {5, 8, 11, 70, 13, 45};
         System.out.println(FindLargest(arr, 0, arr.length - 1));
 
+        int[] maj = {1, 2, 1, 1, 3, 1};
+        System.out.println(findMajority(maj, 0, maj.length - 1));
+    }
+
+    public static int findMajority(int[] A, int low, int high) {
+        if (low ==  high)
+            return A[low];
+
+        int mid = (low + high) / 2;
+        int leftMaj = findMajority(A, low, mid);
+        int rightMaj = findMajority(A, mid + 1, high);
+
+        if (leftMaj == rightMaj)
+            return leftMaj;
+
+        int leftCount = getFrequency(A, low, mid, leftMaj);
+        int rightCount = getFrequency(A, mid + 1, high, rightMaj);
+
+        if (leftCount >= mid)
+            return leftMaj;
+        else if (rightCount >= mid)
+            return rightMaj;
+        else
+            return -1;
+    }
+
+    public static int getFrequency(int[] A, int low, int high, int target) {
+        int counter = 0;
+
+        for (int i = low; i <= high; i++) {
+            if (A[i] == target)
+                counter++;
+        }
+
+        return counter;
+    }
+
+    public static int FindMajority(int[] A, int low, int high) {
+        if (A.length == 1)
+            return A[0];
+        if (A.length == 2) {
+            if (A[0] == A[1])
+                return A[0];
+            else
+                return -1;
+        }
+        int  mid = (low + high) / 2;
+        int left = FindMajority(A, low, mid);
+        int right = FindMajority(A, mid + 1, high);
+
+        if (left == -1 && right >= 0)
+            return right;
+        if (right == -1 && left >= 0)
+            return left;
+        if (left == right)
+            return left;
+
+        return -1;
     }
 
     public static int FindLargest(int[] A, int low, int high) {
