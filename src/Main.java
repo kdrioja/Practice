@@ -18,6 +18,7 @@ public class Main {
         System.out.println(solution1(s1, "ab"));
         */
 
+        /**
         int[] A = {-1,7,0,7,-8};
         System.out.println(solution(A));
 
@@ -29,6 +30,25 @@ public class Main {
 
         int[] D = {3, 4, -2};
         System.out.println(solution(D));
+         */
+        int[] arr = {5, 8, 11, 70, 13, 45};
+        System.out.println(FindLargest(arr, 0, arr.length - 1));
+
+    }
+
+    public static int FindLargest(int[] A, int low, int high) {
+        if (low == high)
+            return A[low];
+        else {
+            int mid = (low + high) / 2;
+            int first = FindLargest(A, low, mid);
+            int second = FindLargest(A, mid + 1, high);
+
+            if (first < second)
+                return second;
+            else
+                return first;
+        }
     }
 
     public static int solution(int[] A) {
