@@ -31,33 +31,69 @@ public class Main {
         int[] D = {3, 4, -2};
         System.out.println(solution(D));
          */
+
+        /**
         int[] arr = {5, 8, 11, 70, 13, 45};
         System.out.println(FindLargest(arr, 0, arr.length - 1));
 
         int[] maj = {1, 2, 1, 1, 3, 1};
         System.out.println(findMajority(maj, 0, maj.length - 1));
+         */
+        System.out.println(backspaceCompare("ab#d", "ac#d"));
+    }
+
+    public static boolean backspaceCompare(String S, String T) {
+        System.out.println(backspace(S));
+        System.out.println(backspace(T));
+
+
+        return backspace(S).equals(backspace(T));
+    }
+
+    public static String backspace(String s) {
+        StringBuilder str = new StringBuilder(s);
+        System.out.println(str);
+        //"ab#c"
+
+        for (int i = 0; i < str.length();) {
+            if (str.charAt(i) != '#') {
+                i++;
+            }
+            else {
+                //if it is a #, delete it
+                str.deleteCharAt(i);
+                //now you need to check if the i for the prev one is valid
+                if (i - 1 >= 0) {
+                    str.deleteCharAt(i - 1);
+                    i--;
+                }
+            }
+        }
+
+        return str.toString();
     }
 
     public static int findMajority(int[] A, int low, int high) {
         if (low ==  high)
             return A[low];
+        else {
+            int mid = (low + high) / 2;
+            int leftMaj = findMajority(A, low, mid);
+            int rightMaj = findMajority(A, mid + 1, high);
 
-        int mid = (low + high) / 2;
-        int leftMaj = findMajority(A, low, mid);
-        int rightMaj = findMajority(A, mid + 1, high);
+            if (leftMaj == rightMaj)
+                return leftMaj;
 
-        if (leftMaj == rightMaj)
-            return leftMaj;
+            int leftCount = getFrequency(A, low, mid, leftMaj);
+            int rightCount = getFrequency(A, mid + 1, high, rightMaj);
 
-        int leftCount = getFrequency(A, low, mid, leftMaj);
-        int rightCount = getFrequency(A, mid + 1, high, rightMaj);
-
-        if (leftCount >= mid)
-            return leftMaj;
-        else if (rightCount >= mid)
-            return rightMaj;
-        else
-            return -1;
+            if (leftCount >= mid)
+                return leftMaj;
+            else if (rightCount >= mid)
+                return rightMaj;
+            else
+                return -1;
+        }
     }
 
     public static int getFrequency(int[] A, int low, int high, int target) {
@@ -71,28 +107,6 @@ public class Main {
         return counter;
     }
 
-    public static int FindMajority(int[] A, int low, int high) {
-        if (A.length == 1)
-            return A[0];
-        if (A.length == 2) {
-            if (A[0] == A[1])
-                return A[0];
-            else
-                return -1;
-        }
-        int  mid = (low + high) / 2;
-        int left = FindMajority(A, low, mid);
-        int right = FindMajority(A, mid + 1, high);
-
-        if (left == -1 && right >= 0)
-            return right;
-        if (right == -1 && left >= 0)
-            return left;
-        if (left == right)
-            return left;
-
-        return -1;
-    }
 
     public static int FindLargest(int[] A, int low, int high) {
         if (low == high)
@@ -144,8 +158,6 @@ public class Main {
     }
 
 
-
-
     public static int solution2(String S1, String S2) {
         // write your code in Java SE 8
         int totalTime = 0;
@@ -163,22 +175,6 @@ public class Main {
     public static int timeFinder(int i, int j) {
         return Math.abs(j-i);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /*
      We are given a string S consisting of N characters and an integer K.
      The string represents a software license key which we would like to format.
