@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 public class Main {
     public static void main(String[] args) {
         /*
@@ -41,25 +43,53 @@ public class Main {
          */
         //System.out.println(backspaceCompare("ab#d", "ac#d"));
 
+        /**
         int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         printMatrix(matrix);
         rotateMatrix(matrix);
         printMatrix(matrix);
+         */
+
+        //find pair of numbers
+        int[] arr = {3, 2, 6, 9, 5};
+        System.out.println(findTwo(arr, 9));
+
+        int[] brr = {10, 1, 5};
+        System.out.println(findTwo(brr, 7));
+
+        int[] crr = {};
+        System.out.println(findTwo(crr, 2));
+
+        int[] drr = {1, 5, 2, 4};
+        System.out.println(findTwo(drr, 6));
     }
 
     public static Pair findTwo(int[] array, int x) {
         //Given an array of size n and a number x, determine
         //the first two elements in the array, if any, whose
         //sum is exactly x
+        /**
+         Time Complexity: O(n)
+         Space Complexity: O(n) due to HashSet
+         Can it be solved in a O(1) space complexity?
+         */
         if (array.length < 2) {
             return null;
         }
 
-
+        HashSet<Integer> numsSeen = new HashSet<>();
 
         for (int i = 0; i < array.length; i++) {
+            int complement = x - array[i];
 
+            if (numsSeen.contains(complement)) {
+                return new Pair(complement, array[i]);
+            }
+            else {
+                numsSeen.add(array[i]);
+            }
         }
+        return null;
     }
 
     public static void printMatrix(int[][] matrix) {

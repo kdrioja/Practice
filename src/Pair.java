@@ -6,4 +6,9 @@ public class Pair {
         this.first = a;
         this.second = b;
     }
+
+    @Override
+    public String toString() {
+        return "(" + this.first + ", " + this.second + ")";
+    }
 }
