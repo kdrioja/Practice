@@ -39,7 +39,48 @@ public class Main {
         int[] maj = {1, 2, 1, 1, 3, 1};
         System.out.println(findMajority(maj, 0, maj.length - 1));
          */
-        System.out.println(backspaceCompare("ab#d", "ac#d"));
+        //System.out.println(backspaceCompare("ab#d", "ac#d"));
+
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        printMatrix(matrix);
+        rotateMatrix(matrix);
+        printMatrix(matrix);
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                System.out.print(matrix[i][j] + "  ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void rotateMatrix(int[][] matrix) {
+        transposeMatrix(matrix);
+        reverseRows(matrix);
+    }
+
+    public static void reverseRows(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                int temp = matrix[i][matrix.length - 1 - j];
+                System.out.println(temp);
+                matrix[i][matrix.length - 1 - j] = matrix[i][j];
+                System.out.println(matrix[i][matrix.length - 1 - j]);
+                matrix[i][j] = temp;
+            }
+        }
+    }
+
+    public static void transposeMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = i + 1; j < matrix.length; j++) {
+                int temp = matrix[j][i];
+                matrix[j][i] = matrix[i][j];
+                matrix[i][j] = temp;
+            }
+        }
     }
 
     public static boolean backspaceCompare(String S, String T) {
