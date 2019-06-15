@@ -47,6 +47,21 @@ public class Main {
         printMatrix(matrix);
     }
 
+    public static Pair findTwo(int[] array, int x) {
+        //Given an array of size n and a number x, determine
+        //the first two elements in the array, if any, whose
+        //sum is exactly x
+        if (array.length < 2) {
+            return null;
+        }
+
+
+
+        for (int i = 0; i < array.length; i++) {
+
+        }
+    }
+
     public static void printMatrix(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
