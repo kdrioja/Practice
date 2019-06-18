@@ -50,6 +50,8 @@ public class Main {
         printMatrix(matrix);
          */
 
+
+        /**
         //find pair of numbers
         int[] arr = {3, 2, 6, 9, 5};
         System.out.println(findTwo(arr, 9));
@@ -62,6 +64,7 @@ public class Main {
 
         int[] drr = {1, 5, 2, 4};
         System.out.println(findTwo(drr, 6));
+         */
     }
 
     public static Pair findTwo(int[] array, int x) {
