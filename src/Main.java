@@ -1,4 +1,6 @@
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Main {
     public static void main(String[] args) {
@@ -71,6 +73,11 @@ public class Main {
         copy[0] = 1;
         printArray(original);
         printArray(copy);
+
+        Queue<Integer> qu = new LinkedList<>();
+        qu.add(8);
+        qu.add(9);
+        System.out.println(qu.peek());
     }
 
     public static void printArray(int[] array) {
