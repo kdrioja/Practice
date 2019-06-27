@@ -64,9 +64,21 @@ public class Main {
 
         int[] drr = {1, 5, 2, 4};
         System.out.println(findTwo(drr, 6));
-         */
+         **/
+
+        int[] original = {2, 3, 4, 5};
+        int[] copy = new int[original.length + 1];
+        copy[0] = 1;
+        printArray(original);
+        printArray(copy);
     }
 
+    public static void printArray(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            System.out.print(array[i] + ", ");
+        }
+        System.out.println(array[array.length - 1]);
+    }
     public static Pair findTwo(int[] array, int x) {
         //Given an array of size n and a number x, determine
         //the first two elements in the array, if any, whose
